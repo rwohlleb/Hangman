@@ -18,6 +18,7 @@ namespace Hangman
             Boolean win = false;
             Char guess;
             Char play;
+            String guessedLetters = "";
 
             while (isPlaying == true)
             {
@@ -40,16 +41,24 @@ namespace Hangman
                 {
                     isFound = false;
                     Console.Clear();
-                    Console.WriteLine(word);
                     for (int z = 0; z < temp.Length; z++)
                     {
                         Console.Write(" " + temp[z]);
                     }
                     Console.WriteLine();
                     Console.WriteLine("You have " + (numberOfGuesses - i) + " guesses left.");
+                    Console.WriteLine();
+                    Console.WriteLine("Previous guesses:");
+                    Console.WriteLine(guessedLetters);
+                    Console.WriteLine();
                     Console.WriteLine("Enter Guess: ");
+                    
+
+
                     guess = Convert.ToChar(Console.ReadLine().ToUpperInvariant()[0]);
                     Console.WriteLine(guess);
+                    guessedLetters += guess.ToString() + " ";
+                    
 
                     for (int k = 0; k < word.Length; k++)
                     {
@@ -74,8 +83,11 @@ namespace Hangman
                 }
 
                 Console.Clear();
+                Console.WriteLine("Your word was : " + word);
+
                 if (win)
                 {
+                    
                     Console.WriteLine("You win!");
                 }
                 else
@@ -100,7 +112,7 @@ namespace Hangman
         {
             try
             {
-                StreamReader readingMachine = new StreamReader(@"C:\Users\rwohl\source\repos\Hangman\words.txt");
+                StreamReader readingMachine = new StreamReader(@"ENTER WORDS.TXT PATH HERE");
                 List<String> myList = new List<String>();
                 String str = "";
                 while ((str = readingMachine.ReadLine()) != null)
